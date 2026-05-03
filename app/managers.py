@@ -20,7 +20,11 @@ class ActorManager:
         cursor = self.connection.cursor()
         cursor.execute(query)
         rows = cursor.fetchall()
-        return [Actor(id=row[0], first_name=row[1], last_name=row[2]) for row in rows]
+        return [
+            Actor(id=row[0],
+                  first_name=row[1],
+                  last_name=row[2]) for row in rows
+        ]
 
     def update(self, pk: int, new_first_name: str, new_last_name: str) -> None:
         query = (f"UPDATE {self.table_name} "
